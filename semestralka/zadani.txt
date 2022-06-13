@@ -1,0 +1,55 @@
+Grafické RPG
+
+
+Naprogramujte engine pro grafické RPG
+
+Váš engine:
+
+	1. ze souboru nahraje definici světa (mapu, předměty, příšery, ...)
+	2. umožní vytvořit herní postavu (její atributy a schopnosti) a následnou hru
+	3. implementuje jednoduchý soubojový systém a inventář
+	4. umožňuje ukládat a načítat rozehrané hry
+Engine může fungovat jako real-time hra, či tahová hra.
+
+Jak může vypadat mapa?
+
+# označuje zeď, T označuje truhlu s pokladem, > označuje pozici (směr otočení) hráče.
+
+
+###################
+# T   #      #    #
+#           ###   #
+#     ##   #      #
+#     #       # > #
+###################
+Kde lze využít polymorfismus? (doporučené)
+
+	Soubojové vlastnosti: 	postava, příšera, stroj (např. past, bomba,...)
+	Efekty akcí:		souboje, události (pád ze stromu,...), přechod do jiné místnosti
+	Inventář:		postava, batoh, toulec, kapsa
+	Uživatelské rozhraní: 	konzole, ncurses, SDL, OpenGL (různé varianty), ...
+
+Mé zadání
+
+Moje hra bude umožňovat nahrávat mapy/levely ze souboru a také je ukládat.
+V mapě se nachází hned několik dynamických (pohyblivých) objektů, ať už objekt hráče, který se umí natáčet dle směru chůze 
+(<,>,^,v), nebo nepřátelé, kteří se po mapě rovněž pohybují. Nepřátelé mají různou znakovou reprezentaci např. (F - nemrtvý).
+Krom pohyblivých objektů se v mapě nachází také nepohyblivé objekty, mezi něž patří např. (# - zeď), (D - dveře, přechod mezi mapami).
+Hráč může s objekty interagovat intuitivním způsobem, např. útočit, vzít předmět z truhly.
+Hráč má k dispozici inventář, kde může použít předměty, které ve hře nasbíral. Přebytečné předměty lze zahodit.
+Pro podrobnější popis událostí ve hře bude k dispozici okno, ve kterém se o nich bude informovat popisnou textovou formou.
+Hráč si může vybrat mezi rolí, za kterou chce hrát - paladin, mág, darebák. Každá role má jiné schopnosti a jiné vlastnosti útoků.
+Hra končí smrtí hráče nebo uložením hry/ukončením hry hráčem.
+
+Můj polymorfismus bude implementován v případě CGameObject metodami getAction() a interactWith(), 
+které dále dědí různé třídy hráče např. CPlayerPaladin, ale i CEnemy a dále. 
+Dále v případě třídy CEvent metodami print() a updateObjects(), které dále dědí různé třídy událostí např. CAttack.
+Dalším případem je třída CItem a její metoda itemApply().
+
+Celá hra navíc bude mít interaktivní GUI, které bude implementované pomocí ncurses.
+
+
+
+
+ 
+
